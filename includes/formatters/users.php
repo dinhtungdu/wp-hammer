@@ -65,7 +65,7 @@ function user_pass( $user, $formatter ) {
 		debug_print_backtrace();
 	}
 	if ( 'auto' === $formatter ) {
-		$new_password = bin2hex( mcrypt_create_iv( 12, MCRYPT_DEV_URANDOM ) );
+		$new_password = bin2hex( random_bytes( 12 ) );
 		\WP_CLI::line( "New password for user {$user[ 'ID' ]} is {$new_password}" );
 		$user[ 'user_pass' ] = wp_hash_password( $new_password );
 	} else {
